@@ -4,3 +4,5 @@ author: 'Jason Polito'
 homepage: ''
 code: ''
 form: 'fields.yaml'
+requires:
+  - RainLab.Builder
