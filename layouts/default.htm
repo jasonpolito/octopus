@@ -1,0 +1,54 @@
+description = "Basic layout"
+==
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ this.page.meta_title }}</title>
+	<!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.css"> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{{ ['assets/compiled/css/style.css', 'assets/sass/style.scss']|theme }}">
+</head>
+<body>
+<section class="hero is-primary is-bold">
+	<div class="hero-head">{% partial 'navigation'  %}</div>
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        {{ this.page.title }}
+      </h1>
+      <h2 class="subtitle">
+        {{ this.page.description }}
+      </h2>
+    </div>
+  </div>
+  <div class="hero-foot">
+    <nav class="tabs is-boxed is-fullwidth">
+      <div class="container">
+        <ul>
+		    	<li class="is-active"><a href="#">All</a></li>
+		    	<li><a href="#">Wireless</a></li>
+		    	<li><a href="#">In-Ear</a></li>
+		    	<li><a href="#">On-Ear</a></li>
+		    	<li><a href="#">Over-Ear</a></li>
+		    	<li><a href="#">Open Back</a></li>
+		    	<li><a href="#">Closed Back</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</section>
+	<div class="section">
+		<div class="container">
+				{% page %}
+		</div>
+	</div>
+{% partial 'footer' %}
+<!-- jQuery is required -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- UIkit JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.28/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.28/js/uikit-icons.min.js"></script>
+</body>
+</html>

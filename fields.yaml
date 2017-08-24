@@ -1,0 +1,14 @@
+tabs: 
+  fields:
+
+    primary_color:
+      tab: 'Style'
+      type: 'colorpicker'
+      label: 'Primary Color'
+      assetVar: 'primary'
+      
+    site_name:
+      tab: 'General'
+      type: 'text'
+      label: 'Website Name'
+      default: 'Website Nmae'
