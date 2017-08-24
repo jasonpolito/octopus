@@ -1,8 +1,8 @@
-name: jPoct
+name: Octopus
 description: ''
 author: 'Jason Polito'
 homepage: ''
 code: ''
 form: 'fields.yaml'
-requires:
+require:
   - RainLab.Builder
