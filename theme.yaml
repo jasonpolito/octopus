@@ -6,3 +6,5 @@ code: ''
 form: 'fields.yaml'
 require:
   - RainLab.Builder
+  - RainLab.Pages
+  - RainLab.Blog
