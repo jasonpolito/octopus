@@ -1,15 +1,14 @@
+[viewBag]
+
+[staticMenu]
+code = "main-menu"
 ==
-<header class="nav">
+<nav class="navbar is-transparent">
   <div class="container">
-    <div class="nav-left">
-      <a class="nav-item">
-        {{ this.theme.site_name }}
-      </a>
-    </div>
-    <span class="nav-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </span>
+    {% if staticMenu.menuItems %}
+        <div class="navbar-right navbar-menu">
+          {% partial 'nav/items' items=staticMenu.menuItems %}
+        </div>
+    {% endif %}
   </div>
-</header>
+</nav>

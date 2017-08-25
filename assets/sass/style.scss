@@ -1,1 +1,7 @@
 @import "bulma/bulma";
+
+
+img[style] {
+	max-width: 100% !important;
+	height: auto !important;
+}

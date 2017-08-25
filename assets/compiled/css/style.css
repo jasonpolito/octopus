@@ -5806,7 +5806,6 @@ a.nav-item:not(.button).is-tab.is-active {
 }
 
 .navbar {
-  background-color: white;
   min-height: 3.25rem;
   position: relative;
 }
@@ -8944,6 +8943,11 @@ label.panel-block:hover {
 .footer {
   background-color: whitesmoke;
   padding: 3rem 1.5rem 6rem;
+}
+
+img[style] {
+  max-width: 100% !important;
+  height: auto !important;
 }
 
 /*# sourceMappingURL=style.css.map */
