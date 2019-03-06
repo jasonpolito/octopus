@@ -69,14 +69,6 @@ secondaryTabs:
             mode: relation
             type: taglist
             tab: Details
-        layout:
-            label: Layout
-            span: auto
-            options:
-                default: Default
-                alt: Alt
-            type: layout
-            tab: Details
         meta_title:
             label: 'Meta Title'
             span: left
@@ -123,3 +115,8 @@ secondaryTabs:
                                     size: ''
                                     span: full
                                     type: textarea
+        layout:
+            label: Layout
+            span: auto
+            type: layout
+            tab: Layout

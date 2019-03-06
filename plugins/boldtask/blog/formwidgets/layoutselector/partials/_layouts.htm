@@ -1,8 +1,26 @@
-<div>
-    <h3>Poop</h3>
-    <select name="<?php echo $name ?>" id="">
-        <?php foreach ($layouts as $key => $val): ?>
-        <option value="<?= $key ?>" <?= $key === $value ? 'selected=selected' : '' ?>><?= $val ?></option>
-        <?php endforeach; ?>
-    </select>
+<style>
+    .layout-card.active {
+        box-shadow: inset 0 0 0 3px <?= $color ?>, 0 13px 27px -5px rgba(50,50,93,0.25), 0 8px 16px -8px rgba(0,0,0,0.3), 0 -6px 16px -6px rgba(0,0,0,0.025)
+    }
+</style>
+<div style="display: flex; margin: 0 -1rem 1rem">
+    <?php foreach ($layouts as $key => $layout): ?>
+        <div style="padding: 0 1rem">
+            <div data-layout="<?= $key ?>" class="layout-card layout-<?= $key . ($key === $value ? ' active' : '') ?>"></div>
+        </div>
+    <?php endforeach ?>
 </div>
+<input type="hidden" value="<?= $value ?>" name="<?= $name ?>">
+
+<script>
+    var value = document.querySelector('[name="<?= $name ?>"]');
+    var layouts = document.querySelectorAll('.layout-card');
+    layouts.forEach(layout => {
+        layout.addEventListener('click', e => {
+            var key = layout.getAttribute('data-layout')
+            layouts.forEach(layout => layout.classList.remove('active'))
+            layout.classList.add('active')
+            value.value = key
+        })
+    })
+</script>
