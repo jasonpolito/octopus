@@ -1,0 +1,125 @@
+fields:
+    title:
+        label: Title
+        span: auto
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        defaultFrom: title
+        preset:
+            field: title
+            type: slug
+        type: text
+    toolbar:
+        type: partial
+        path: post_toolbar
+        cssClass: collapse-visible
+secondaryTabs:
+    fields:
+        content:
+            stretch: true
+            type: RainLab\Blog\FormWidgets\BlogMarkdown
+            cssClass: 'field-slim blog-post-preview'
+            mode: split
+            span: full
+            tab: Content
+        main_image:
+            label: 'Main Image'
+            mode: image
+            span: left
+            type: mediafinder
+            tab: 'Main Image'
+        main_image_description:
+            label: 'Main Image Description'
+            span: right
+            type: text
+            tab: 'Main Image'
+        main_image_alt:
+            label: 'Main Image Alt'
+            span: right
+            type: text
+            tab: 'Main Image'
+        published:
+            label: Published
+            span: left
+            type: checkbox
+            tab: Details
+        published_at:
+            label: 'Published Date'
+            mode: date
+            span: left
+            cssClass: ''
+            trigger:
+                action: enable
+                field: published
+                condition: checked
+            type: datepicker
+            tab: Details
+        excerpt:
+            label: Subtitle
+            size: ''
+            span: left
+            type: textarea
+            tab: Details
+        categories:
+            label: Categories
+            nameFrom: title
+            span: auto
+            mode: relation
+            type: taglist
+            tab: Details
+        layout:
+            label: Layout
+            span: auto
+            options:
+                default: Default
+                alt: Alt
+            type: layout
+            tab: Details
+        meta_title:
+            label: 'Meta Title'
+            span: left
+            type: text
+            tab: SEO
+        meta_description:
+            label: 'Meta Description'
+            size: ''
+            span: left
+            type: textarea
+            tab: SEO
+        schema:
+            label: Schema
+            prompt: 'Add Schema'
+            span: full
+            type: repeater
+            tab: Schema
+            form:
+                fields:
+                    type:
+                        label: Type
+                        options:
+                            FAQPage: FAQPage
+                            LocalBusiness: LocalBusiness
+                        span: left
+                        type: dropdown
+                    faqs:
+                        trigger:
+                            action: show
+                            field: type
+                            condition: 'value[FAQPage]'
+                        label: Q/As
+                        prompt: 'Add Q/A'
+                        span: full
+                        type: repeater
+                        form:
+                            fields:
+                                question:
+                                    label: Question
+                                    span: full
+                                    type: text
+                                answer:
+                                    label: Answer
+                                    size: ''
+                                    span: full
+                                    type: textarea

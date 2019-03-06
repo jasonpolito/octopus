@@ -1,0 +1,34 @@
+tabs:
+  fields:
+    site_name:
+      tab: Company
+      label: 'Company Name'
+      span: auto
+      type: text
+    google_analytics:
+      tab: Tracking & Analytics
+      label: 'Google Analytics UA'
+      span: auto
+      type: text
+    font_size:
+      tab: Style & Colors
+      label: 'Font Size'
+      span: auto
+      type: text
+      assetVar: 'font-size'
+    font_family:
+      tab: Style & Colors
+      label: 'Font Family'
+      span: auto
+      type: text
+      assetVar: 'font-family'
+    color_primary:
+      tab: Style & Colors
+      label: Primary Color
+      type: colorpicker
+      assetVar: 'color-primary'
+    color_accent:
+      tab: Style & Colors
+      label: Accent Color
+      type: colorpicker
+      assetVar: 'color-accent'

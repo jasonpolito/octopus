@@ -1,0 +1,16 @@
+input,
+textarea {
+    @apply
+        appearance-none
+        border-none
+        rounded
+        block
+        w-full
+        p-3
+        mb-3
+        text-sm;
+}
+
+textarea {
+    height: 6rem;
+}

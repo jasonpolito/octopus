@@ -1,0 +1,32 @@
+@tailwind preflight;
+@tailwind components;
+
+html {
+    font-size: 14px;
+    font-display: auto;
+    font-family: unquote('@font-family');
+    color: #333333;
+}
+
+@screen sm {
+    html {
+        font-size: 16px;
+    }
+}
+
+@screen lg {
+    html {
+        font-size: 18px;
+    }
+}
+
+body {
+    font-size: 1rem;
+}
+
+.layout .field-markdowneditor .editor-preview {
+    @import 'components/typography';
+    @import 'components/blog';
+}
+
+@tailwind utilities;

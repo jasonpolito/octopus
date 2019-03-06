@@ -1,0 +1,23 @@
+title = "Slug"
+url = "/:slug"
+layout = "default"
+is_hidden = 0
+
+==
+<?php
+function onEnd() {
+    $slug = $this->param('slug');
+    $record = Boldtask\Blog\Models\Post::where('slug', $slug)->first();
+    if ($record) {
+        $record['type'] = 'post';
+    } else {
+        return $this->controller->run('404');
+    }
+    $this['record'] = $record;
+    $this->page->meta_title = $record->meta_title;
+    $this->page->meta_description = $record->meta_description;
+}
+?>
+==
+
+{% partial record.type %}

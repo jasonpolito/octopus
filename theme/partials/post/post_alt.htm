@@ -1,0 +1,49 @@
+<div data-active-links="/blog"></div>
+
+<article class="blog-post">
+    {% partial 'blog/layout/post_open' %}
+        <h1 {% if record.title|split(' ')|length >= 8 %}class="long-title"{% endif %}>
+            <span>{{ record.title }}</span>
+        </h1>
+        <div class="text-grey-dark -mt-2 mb-6 text-lg">{{ record.excerpt|md|raw }}</div>
+        <div class="text-sm text-grey-dark">
+            <a href="{{ 'blog'|page({c: record.categories[0].slug}) }}">{{ record.categories[0].title }}</a> • {{ record.displayDate|date('F jS') }} • {{ max((record.content|split(' ')|length / 150)|round, 1) }} min read
+        </div>
+        <div class="pt-4">
+            <div class="border-b pt-8 border-grey-lighter"></div>
+        </div>
+    {% partial 'blog/layout/post_close' %}
+
+    <div class="pb-16 post-content">
+        {% partial 'blog/layout/post_open' %}
+        {{ record.parsedContent|raw }}
+        {% partial 'blog/layout/post_close' %}
+    </div>
+</main>
+
+{% put styles %}
+<meta property="og:title" content="{{ record.title }}">
+<meta property="og:description" content="{{ record.excerpt }}">
+<meta property="og:site_name" content="{{ this.theme.site_name }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ record.main_image|media }}">
+{% for schema in record.schema %}
+
+{% if schema.type in 'FAQPage' %}
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org/",
+    "@type": "FAQPage",
+    "hasPart": [
+        {% for qa in schema.faqs %}
+            {"@context": "http://schema.org/","@type": "Question","text": "{{ qa.question }}","acceptedAnswer": {"@type": "Answer","text": "{{ qa.answer }}"}}{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
+</script>
+{% endif %}
+
+{% endfor %}
+{% endput %}

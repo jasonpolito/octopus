@@ -1,0 +1,57 @@
+$margin: .5rem;
+
+.dropdown {
+    @apply
+        list-reset
+        opacity-0
+        absolute
+        pin-l
+        bg-white
+        rounded
+        text-sm
+        shadow-lg
+        py-2
+        text-sm
+        ;
+    pointer-events: none;
+    top: 100%;
+    margin: 0 ($margin * -2);
+    min-width: calc(100% + #{ $margin * 4 });
+    transition: all .2s ease;
+    &:hover {
+        opacity: 1;
+        pointer-events: all;
+    }
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: -$margin;
+        top: -$margin;
+        width: calc(100% + #{$margin * 2});
+        height: calc(100% + #{$margin * 2});
+    }
+    a {
+        display: block;
+        transition: all .2s ease;
+        padding: $margin ($margin * 2);
+        @apply no-underline;
+        &:hover {
+            @apply bg-grey-lightest;
+        }
+    }
+    &.dark {
+        a {
+            &:hover {
+                @apply bg-black;
+            }
+        }
+    }
+}
+
+.dropdown-trigger:hover {
+    + .dropdown {
+        pointer-events: all;
+        opacity: 1;
+    }
+}

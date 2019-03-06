@@ -1,0 +1,33 @@
+description = "Default layout"
+
+==
+<?php
+function onStart() {
+    $this['canonical'] = $this->currentPageUrl();
+}
+==
+{% htmlcompress %}
+<!DOCTYPE html>
+<html lang="en">
+    {% partial 'site/meta' %}
+    <body class="app-wrapper">
+        <div data-google-analytics="{{ this.theme.google_analytics }}"></div>
+        <div data-font-family="{{ this.theme.font_family }}"></div>
+        {% partial 'site/header' %}
+        <div id="panel" class="flex flex-col min-h-screen">
+            <div id="barba-wrapper" class="flex-1">
+                <div class="barba-container">{% page %}</div>
+            </div>
+            {% partial 'site/footer' %}
+        </div>
+        <script src="{{ 'assets/js/app.js'|theme }}"></script>
+        <script src="{{ [
+            '@jquery',
+            '@framework',
+            '@framework.extras',
+        ]|theme }}"></script>
+
+        {% scripts %}
+    </body>
+</html>
+{% endhtmlcompress %}

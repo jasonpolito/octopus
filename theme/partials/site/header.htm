@@ -1,0 +1,58 @@
+[viewBag]
+==
+{% set links = [
+    {
+        page: 'about',
+        text: 'About',
+    },
+    {
+        page: 'blog',
+        text: 'Blog',
+    },
+    {
+        page: 'contact',
+        text: 'Contact',
+    }
+] %}
+
+<div class="mobile-menu">
+    <div>
+        <ul class="list-reset text-center flex justify-center flex-col">
+            <li>
+                <a class="inline-block align-top py-4" href="{{ 'home'|page }}"></a>
+            </li>
+            {% for link in links %}
+                <li><a href="{{ link.page|page }}" data-toggle-menu class="block py-4 px-4 text-lg">{{ link.text }}</a></li>
+            {% endfor %}
+            <li><span data-toggle-menu class="block py-4 px-4 text-lg cursor-pointer"><i data-feather="x"></i></span></li>
+        </ul>
+    </div>
+</div>
+
+<header class="shadow sticky pin-t z-10 bg-white">
+    <div class="container">
+        <div class="flex flex-wrap justify-between items-center">
+            <div class="text-center">
+                <div class="inline-block align-top">
+                    <a class="py-2 grid-sm items-center" href="{{ 'home'|page }}">
+                        <span class="flex items-center text-primary">
+                            <span class="pl-4 text-lg"><b>{{ this.theme.site_name }}</b></span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <nav class="flex justify-center">
+                <ul class="list-reset hidden md:flex items-center">
+                    {% for link in links %}
+                        <li><a class="block py-6 text-sm {{ this.page.id == link.page ? 'active' : ''}}" href="{{ link.page|page }}">{{ link.text }}</a></li>
+                    {% endfor %}
+                </ul>
+                <div class="flex md:hidden items-center">
+                    <div>
+                        <span data-toggle-menu class="block py-4 px-4 -mr-4 cursor-pointer"><i data-feather="menu"></i></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>

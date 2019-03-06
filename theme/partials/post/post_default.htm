@@ -1,0 +1,85 @@
+<div data-active-links="/blog"></div>
+
+<article class="blog-post">
+    <div class="xl:hidden ">
+        <div class="mb-8 md:mb-12 border-b border-grey-light">
+            {% set screens = [
+                ['sm', [800, 300]],
+                ['md', [1000, 350]],
+                ['lg', [1000, 280]],
+            ] %}
+            {% partial 'picture' image=record.main_image|media width=600 height=300 screens=screens alt=(record.main_image_alt ? record.main_image_alt : record.title) %}
+        </div>
+        <div class="text-center md:-mt-8 -mt-4">
+            <i class="attribution mb-4">{{ record.main_image_description }}</i>
+        </div>
+    </div>
+
+    <div class="overflow-hidden">
+        <div class="container">
+            <div class="grid items-center xl:flex-row-reverse justify-center">
+                <div class="hidden xl:block xl:w-1/2 self-start">
+                    <div class="-mr-24">
+                        {% set screens = [
+                            ['xl', [650, 500]],
+                        ] %}
+                        <div>
+                            {% partial 'picture' image=record.main_image|media width=600 height=300 screens=screens alt=(record.main_image_alt ? record.main_image_alt : record.title) %}
+                            <div class="pt-8">
+                                <i class="attribution">{{ record.main_image_description }}</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-5/6 lg:w-3/4 xl:w-1/2 xl:py-18">
+                    <div class="text-primary uppercase text-sm -mb-2 hidden xl:block">
+                        <a href="{{ 'slug'|page({slug: record.categories[0].slug }) }}"><b>{{ record.categories[0].title }}</b></a>
+                    </div>
+                    <h1 {% if record.title|split(' ')|length >= 8 %}class="long-title"{% endif %}>
+                        <span>{{ record.title }}</span>
+                    </h1>
+                    <div class="text-grey-dark -mt-2 mb-6 text-lg">{{ record.excerpt|md|raw }}</div>
+                    <div class="text-sm text-grey-dark">
+                        <span class="xl:hidden">
+                        <a href="{{ 'blog'|page({c: record.categories[0].slug}) }}">{{ record.categories[0].title }}</a> • </span> {{ record.displayDate|date('F jS') }} • {{ max((record.content|split(' ')|length / 150)|round, 1) }} min read
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container xl:hidden py-4">
+        <div class="border-b pt-4 border-grey-lighter"></div>
+    </div>
+    <div class="pb-16 post-content">
+        {% partial 'blog/layout/post_open' %}
+        {{ record.parsedContent|raw }}
+        {% partial 'blog/layout/post_close' %}
+    </div>
+</main>
+
+{% put styles %}
+<meta property="og:title" content="{{ record.title }}">
+<meta property="og:description" content="{{ record.excerpt }}">
+<meta property="og:site_name" content="{{ this.theme.site_name }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ record.main_image|media }}">
+{% for schema in record.schema %}
+
+{% if schema.type in 'FAQPage' %}
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org/",
+    "@type": "FAQPage",
+    "hasPart": [
+        {% for qa in schema.faqs %}
+            {"@context": "http://schema.org/","@type": "Question","text": "{{ qa.question }}","acceptedAnswer": {"@type": "Answer","text": "{{ qa.answer }}"}}{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
+</script>
+{% endif %}
+
+{% endfor %}
+{% endput %}

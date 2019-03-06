@@ -1,0 +1,10 @@
+name: Blog
+form: $/boldtask/blog/models/post/fields.yaml
+modelClass: Boldtask\Blog\Models\Post
+defaultRedirect: boldtask/blog/blog
+create:
+    redirect: 'boldtask/blog/blog/update/:id'
+    redirectClose: boldtask/blog/blog
+update:
+    redirect: boldtask/blog/blog
+    redirectClose: boldtask/blog/blog

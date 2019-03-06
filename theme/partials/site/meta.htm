@@ -1,0 +1,21 @@
+==
+<head>
+    <meta charset="utf-8">
+    <title>{{ this.page.meta_title|raw }}</title>
+    <meta name="description" content="{{ this.page.meta_description|raw }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="{{ canonical }}">
+    {% partial 'site/meta/icons' %}
+    {% styles %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    {% if this.theme.google_analytics %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ this.theme.google_analytics }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-{{ this.theme.google_analytics }}-3');
+    </script>
+    {% endif %}
+    {% partial 'site/meta/stylesheets' %}
+</head>

@@ -1,0 +1,10 @@
+name: Categories
+form: $/boldtask/blog/models/category/fields.yaml
+modelClass: Boldtask\Blog\Models\Category
+defaultRedirect: boldtask/blog/categories
+create:
+    redirect: 'boldtask/blog/categories/update/:id'
+    redirectClose: boldtask/blog/categories
+update:
+    redirect: boldtask/blog/categories
+    redirectClose: boldtask/blog/categories

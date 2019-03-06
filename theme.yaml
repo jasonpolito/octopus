@@ -1,8 +1,0 @@
-name: Octopus
-description: ''
-author: 'Jason Polito'
-homepage: 'https://boldtask.com'
-code: Octopus
-form: fields.yaml
-require:
-    - RainLab.Blog

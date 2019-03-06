@@ -1,0 +1,15 @@
+title = "Robots.txt"
+url = "/robots.txt"
+layout = "default"
+meta_title = ""
+meta_description = ""
+is_hidden = 0
+==
+function onStart(){
+    $content = $this->page->markup;
+    return Response::make($content)->header('Content-Type', 'text/plain');
+}
+==
+User-agent: *
+Disallow: /backend/
+Sitemap: /sitemap.xml

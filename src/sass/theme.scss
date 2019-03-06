@@ -1,0 +1,21 @@
+@tailwind preflight;
+@tailwind components;
+
+* {
+    position: relative;
+}
+
+@import 'components/typography';
+@import 'components/navigation';
+@import 'components/layout';
+@import 'components/pagination';
+@import 'components/blog';
+@import 'components/mobilemenu';
+// @import 'components/dropdown';
+@import 'components/inputs';
+@import 'components/buttons';
+@import 'components/alerts';
+@import 'components/lazyload';
+@import 'components/loader';
+
+@tailwind utilities;

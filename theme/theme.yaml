@@ -1,0 +1,14 @@
+name: "Octopus"
+description: "Basic October theme."
+author: "Jason Polito"
+homepage: "https://boldtask.com"
+code: "octopus"
+form: theme_fields.yaml
+
+require:
+    - VojtaSvoboda.TwigExtensions
+    - ToughDeveloper.ImageResizer
+    - Newride.InlineAssets
+    - Vdlp.Redirect
+    - OFFLINE.Speedy
+    - RainLab.Builder
