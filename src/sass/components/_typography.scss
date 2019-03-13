@@ -2,7 +2,8 @@ html {
     font-size: 14px;
     font-display: auto;
     font-family: unquote('@font-family');
-    color: #333333;
+    color: unquote('mix(black, desaturate(@color-primary, 60%), 30%)');
+    -webkit-font-smoothing: antialiased;
 }
 
 @screen sm {

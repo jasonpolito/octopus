@@ -1,14 +1,3 @@
-.post-link {
-    a > div {
-        transition: all 3s ease;
-    }
-    a:focus > div,
-    a:hover > div {
-        opacity: .8;
-        transform: scale(1.1);
-    }
-}
-
 @screen xl {
     .long-title {
         line-height: 1.1;
@@ -30,7 +19,7 @@
 }
 
 .post-content {
-    img {
+    p > img {
         max-width: 100vw;
         width: 100vw;
         vertical-align: top;
@@ -40,20 +29,72 @@
 
 @screen sm {
     .post-content {
-        img {
+        p > img {
             width: unquote("~'calc(100% + 5rem)'");
         }
     }
 }
 
+.post-card {
+    @apply mb-8;
+    &--image {
+        @apply
+            block
+            w-full
+            overflow-hidden
+            bg-primary;
+        > div {
+            transition: all 3s ease;
+        }
+        &:focus > div,
+        &:hover > div {
+            opacity: .8;
+            transform: scale(1.1);
+        }
+    }
+    &--title {
+        @apply
+            mt-4
+            pt-0
+            mb-0
+            text-lg;
+        a:focus,
+        &:hover {
+            @apply text-primary;
+        }
+    }
+    &--subtitle {
+        @apply
+            pt-2
+            text-sm
+            text-grey-dark
+            my-0;
+        > * {
+            margin: 0;
+        }
+    }
+    &--info {
+        @apply
+            pt-2
+            text-sm
+            text-grey-darker;
+    }
+}
+
+
 .post-content p:first-of-type:first-letter {
     color: unquote('@color-primary');
-    font-size: 3.5rem;
+    font-size: 3.5em;
     line-height: 1;
-    margin-right: .25rem;
-    margin-top: .125rem;
+    margin-right: .125em;
+    margin-top: 0;
     margin-bottom: 0;
     float: left;
+}
+
+@screen sm {
+    .post-content p:first-of-type:first-letter {
+    }
 }
 
 

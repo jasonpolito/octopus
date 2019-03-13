@@ -1,0 +1,10 @@
+<div class="picture overflow-hidden" style="margin: 2rem -2rem">
+    <div class="bg-grey-light">
+        <img src="{{ resized }}" style="filter: blur(10px)" alt="{{ alt }}" class="w-full align-top">
+        <div class="overflow-hidden fill-parent bg-center bg-cover" style="background-image: url({{ resized }})">
+            <img src="{{ resized }}" style="filter: blur(10px)" alt="{{ alt }}" class="fill-parent align-top">
+        </div>
+        <div class="fill-parent flex items-center justify-center"><div class="loading-spinner"></div></div>
+        <img data-src="{{ src }}" alt="{{ alt }}" class="lazy lazyload fill-parent align-top">
+    </div>
+</div>

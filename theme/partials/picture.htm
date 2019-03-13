@@ -1,13 +1,15 @@
-{# <div class="hidden invisible xl:block xl:visible">{% partial 'lazy_image' image=post.main_image|media width=1000 height=900 %}</div>
-<div class="hidden invisible md:block xl:hidden xl:invisible">{% partial 'lazy_image' image=post.main_image|media width=1000 height=350 %}</div>
- #}
 <div class="picture">
-    <div class="{{ screens ? screens[0][0] ~ ':hidden' : '' }} bg-grey-light" style="padding-top: {{ height / width * 100 }}%">
+    <div class="{{ screens ? screens[0][0] ~ ':hidden' : '' }} bg-grey-light" {% if height %}style="padding-top: {{ height / width * 100 }}%"{% endif %}>
         <div class="overflow-hidden fill-parent bg-center bg-cover" style="background-image: url({{ image|resize(width / 20, height / 20, {mode: 'crop', quality: '50'}) }})">
             <img src="{{ image|resize(width / 20, height / 20, {mode: 'crop', quality: '50'}) }}" style="filter: blur(10px)" alt="{{ alt }}" class="fill-parent align-top">
         </div>
         <div class="fill-parent flex items-center justify-center">{% partial 'loader' width="44" %}</div>
-        <img data-src="{{ image|resize(width, height, {mode: 'crop'}) }}" alt="{{ alt }}" class="{{ screens ? screens[0][0] ~ ':hidden ' ~ screens[0][0] ~ ':invisible' : '' }} lazy lazyload fill-parent align-top">
+        {% if height %}
+            <img data-src="{{ image|resize(width, height, {mode: 'crop'}) }}" alt="{{ alt }}" class="{{ screens ? screens[0][0] ~ ':hidden ' ~ screens[0][0] ~ ':invisible' : '' }} lazy lazyload fill-parent align-top">
+        {% else %}
+            <img src="{{ image|resize(20, {mode: 'crop'}) }}" alt="{{ alt }}" class="{{ class }} w-full align-top">
+            <img data-src="{{ image|resize(width, {mode: 'crop'}) }}" alt="{{ alt }}" class="{{ screens ? screens[0][0] ~ ':hidden ' ~ screens[0][0] ~ ':invisible' : '' }} lazy lazyload fill-parent w-full align-top">
+        {% endif %}
     </div>
     {% for screen in screens %}
         {% set class = 'hidden invisible ' ~ screen[0] ~':visible ' ~ screen[0] ~':block' %}
@@ -16,12 +18,21 @@
         {% if screens[loop.index0 + 1] %}
             {% set class = class ~ ' ' ~ screens[loop.index0 + 1][0] ~ ':invisible ' ~ screens[loop.index0 + 1][0] ~ ':hidden' %}
         {% endif %}
-        <div class="{{ class }} bg-grey-light" style="padding-top: {{ height / width * 100 }}%">
+        <div class="{{ class }} bg-grey-light" {% if height %}style="padding-top: {{ height / width * 100 }}%"{% endif %}>
             <div class="overflow-hidden fill-parent bg-center bg-cover" style="background-image: url({{ image|resize(width / 20, height / 20, {mode: 'crop', quality: '50'}) }})">
-                <img src="{{ image|resize(width / 20, height / 20, {mode: 'crop', quality: '50'}) }}" style="filter: blur(10px)" alt="{{ alt }}" class="fill-parent align-top">
+                {% if height %}
+                    <img src="{{ image|resize(width / 20, height / 20, {mode: 'crop', quality: '50'}) }}" style="filter: blur(10px)" alt="{{ alt }}" class="fill-parent align-top">
+                {% else %}
+                    <img src="{{ image|resize(width / 20, {mode: 'crop', quality: '50'}) }}" style="filter: blur(10px)" alt="{{ alt }}" class="fill-parent align-top">
+                {% endif %}
             </div>
             <div class="fill-parent flex items-center justify-center">{% partial 'loader' width="44" %}</div>
-            <img data-src="{{ image|resize(width, height, {mode: 'crop'}) }}" alt="{{ alt }}" class="{{ class }} lazy lazyload fill-parent align-top">
+            {% if height %}
+                <img data-src="{{ image|resize(width, height, {mode: 'crop'}) }}" alt="{{ alt }}" class="{{ class }} lazy lazyload fill-parent align-top">
+            {% else %}
+                <img src="{{ image|resize(20, {mode: 'crop'}) }}" alt="{{ alt }}" class="{{ class }} w-full align-top">
+                <img data-src="{{ image|resize(width, {mode: 'crop'}) }}" alt="{{ alt }}" class="{{ class }} lazy lazyload fill-parent w-full align-top">
+            {% endif %}
         </div>
     {% endfor %}
 </div>

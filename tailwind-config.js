@@ -80,13 +80,14 @@ let colors = {
   'inherit': 'inherit',
   'transparent': 'transparent',
 
-  'grey-darkest': 'mix(@color-primary, desaturate(#3d4852, 100%), 5%)',
-  'grey-darker': 'mix(@color-primary, desaturate(#606f7b, 100%), 5%)',
-  'grey-dark': 'mix(@color-primary, desaturate(#8795a1, 100%), 5%)',
-  'grey': 'mix(@color-primary, desaturate(#b8c2cc, 100%), 5%)',
-  'grey-light': 'mix(@color-primary, desaturate(#dae1e7, 100%), 5%)',
-  'grey-lighter': 'mix(@color-primary, desaturate(#f1f5f8, 100%), 5%)',
-  'grey-lightest': 'mix(@color-primary, desaturate(#f8fafc, 100%), 5%)',
+  'grey-darkest': 'shade(mix(@color-primary, #616161, 20%), 20%)',
+  'grey-darker': 'shade(mix(@color-primary, #757575, 20%), 10%)',
+  'grey-dark': 'shade(mix(@color-primary, #9e9e9e, 20%), 5%)',
+  'grey': 'mix(@color-primary, #bdbdbd, 20%)',
+  'grey-light': 'tint(mix(@color-primary, #e0e0e0, 20%), 20%)',
+  'grey-lighter': 'tint(mix(@color-primary, #eeeeee, 20%), 40%)',
+  'grey-lightest': 'tint(mix(@color-primary, #f5f5f5, 20%), 80%)',
+
   'white': '#ffffff',
 }
 

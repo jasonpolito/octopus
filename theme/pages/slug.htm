@@ -14,8 +14,8 @@ function onEnd() {
         return $this->controller->run('404');
     }
     $this['record'] = $record;
-    $this->page->meta_title = $record->meta_title;
-    $this->page->meta_description = $record->meta_description;
+    $this->page->meta_title = $record->meta()['title'];
+    $this->page->meta_description = $record->meta()['description'];
 }
 ?>
 ==

@@ -14,7 +14,8 @@ class TailwindExtractor {
 }
 
 mix
-  .js('src/js/app.js', 'theme/assets/js')
+  // .js('src/js/app.js', 'theme/assets/js')
+  .sass('src/sass/post-preview.scss', 'theme/assets/css/post-preview.less')
   .sass('src/sass/theme.scss', 'theme/assets/css/theme.less')
   .options({
     processCssUrls: false,

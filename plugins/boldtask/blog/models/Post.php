@@ -2,7 +2,9 @@
 
 use Model;
 use Cms\Classes\CmsCompoundObject;
+use Boldtask\Blog\Classes\TagProcessor;
 use Cms\Classes\Theme;
+use ToughDeveloper\ImageResizer\Classes\Image;
 use Markdown;
 use Twig;
 
@@ -40,6 +42,13 @@ class Post extends Model
             'Boldtask\Blog\Models\Category',
             'table' => 'boldtask_blog_cats_posts',
             'order' => 'title'
+        ],
+        'related_posts' => [
+            'Boldtask\Blog\Models\Post',
+            'table' => 'boldtask_blog_posts_posts',
+            'order' => 'title',
+            'key' => 'post_id',
+            'otherKey' => 'related_id',
         ]
     ];
 
@@ -48,6 +57,7 @@ class Post extends Model
     }
 
     public function relatedPosts() {
+        if ($this->related_posts) return $this->related_posts;
         $catIds = $this->categories()->pluck('id');
         return Post::where('id', '!=', $this->id)->with(['categories' => function($query) use ($catIds) {
             $query->whereIn('id', $catIds);
@@ -58,7 +68,58 @@ class Post extends Model
         return $this->slug;
     }
 
-    public function generateToc($content) {
+    public function meta() {
+        return [
+            'title' => $this->meta_title ? $this->meta_title : $this->title,
+            'description' => $this->meta_description ? $this->meta_description : $this->excerpt,
+        ];
+    }
+
+    public static function formatHtml($input, $preview = false)
+    {
+        $content = Markdown::parse(trim($input));
+        if ($preview) {
+            $content = str_replace('<pre>', '<pre class="prettyprint">', $content);
+        }
+        $content = TagProcessor::instance()->processTags($content, $preview);
+        $theme = Theme::getActiveTheme();
+        $post_open = CmsCompoundObject::load($theme, "partials/post/layouts/partials/post_open.htm")->getTwigContent();
+        $post_close = CmsCompoundObject::load($theme, "partials/post/layouts/partials/post_close.htm")->getTwigContent();
+        preg_match_all('/\[\[(.*?)\]\]/', $content, $matches, PREG_PATTERN_ORDER);
+        for ($i = 0; $i < count($matches[0]); $i++) {
+            $partial_name = trim($matches[1][$i]);
+            if ($partial_name !== 'toc') {
+                $partial = CmsCompoundObject::load($theme, "partials/$partial_name.htm")->getTwigContent();
+                $markup = Twig::parse($partial, []);
+                $content = str_replace($matches[0][$i], "$post_close$markup$post_open", $content);
+            }
+        }
+        $content = self::generateToc($content);
+        $content = self::lazyloadImages($content);
+        return $content;
+    }
+
+    public static function lazyloadImages($content) {
+        preg_match_all('/(\<img src="(.*?)".*?alt="(.*?)" \/>)/', $content, $matches, PREG_PATTERN_ORDER);
+        $theme = Theme::getActiveTheme();
+         for ($i = 0; $i < count($matches[0]); $i++) {
+            $src = $matches[2][$i];
+            $alt = $matches[3][$i];
+            $path = '/storage' . explode('/storage', $src)[1];
+            $image = new Image(base_path($path));
+            $resized = $image->resize(20);
+            $partial = CmsCompoundObject::load($theme, "partials/blog_picture.htm")->getTwigContent();
+            $markup = Twig::parse($partial, [
+                'src' => $src,
+                'alt' => $alt,
+                'resized' => $resized,
+            ]);
+            $content = str_replace($matches[0][$i], $markup, $content);
+        }
+        return $content;
+    }
+
+    public static function generateToc($content) {
         $lt = 'ul';
         $toc = "<$lt class='md:text-sm mb-8'>";
         $max_level = 0;
@@ -88,20 +149,8 @@ class Post extends Model
     }
 
     public function parsedContent() {
-        $content = Markdown::parse($this->content);
-        $theme = Theme::getActiveTheme();
-        $post_open = CmsCompoundObject::load($theme, "partials/blog/layout/post_open.htm")->getTwigContent();
-        $post_close = CmsCompoundObject::load($theme, "partials/blog/layout/post_close.htm")->getTwigContent();
-        preg_match_all('/\[\[(.*?)\]\]/', $content, $matches, PREG_PATTERN_ORDER);
-        for ($i = 0; $i < count($matches[0]); $i++) {
-            $partial_name = trim($matches[1][$i]);
-            if ($partial_name !== 'toc') {
-                $partial = CmsCompoundObject::load($theme, "partials/$partial_name.htm")->getTwigContent();
-                $markup = Twig::parse($partial, []);
-                $content = str_replace($matches[0][$i], "$post_close$markup$post_open", $content);
-            }
-        }
-        return $this->generateToc($content);
+        $content = self::formatHtml($this->content);
+        return $content;
     }
 
     public function getFullSlugAttribute() {

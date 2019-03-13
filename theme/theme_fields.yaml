@@ -1,8 +1,8 @@
 tabs:
   fields:
     site_name:
-      tab: Company
-      label: 'Company Name'
+      tab: Overview
+      label: 'Site Name'
       span: auto
       type: text
     google_analytics:
@@ -10,6 +10,37 @@ tabs:
       label: 'Google Analytics UA'
       span: auto
       type: text
+    footer_links:
+      tab: 'Global Elements'
+      label: 'Footer Links'
+      span: auto
+      type: repeater
+      prompt: 'Add Column'
+      form:
+        fields:
+          title:
+            label: Title
+            span: full
+            type: text
+          links:
+            label: 'Column Links'
+            span: full
+            type: repeater
+            prompt: 'Add Link'
+            form:
+              fields:
+                text:
+                  label: Text
+                  span: auto
+                  type: text
+                url:
+                  label: URL
+                  span: auto
+                  type: text
+                blank:
+                  label: 'Target _blank'
+                  span: auto
+                  type: checkbox
     font_size:
       tab: Style & Colors
       label: 'Font Size'

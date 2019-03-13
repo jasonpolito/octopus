@@ -19,16 +19,16 @@ secondaryTabs:
     fields:
         content:
             stretch: true
-            type: RainLab\Blog\FormWidgets\BlogMarkdown
+            type: Boldtask\Blog\FormWidgets\BlogMarkdown
             cssClass: 'field-slim blog-post-preview'
             mode: split
             span: full
             tab: Content
         main_image:
             label: 'Main Image'
-            mode: image
             span: left
             type: mediafinder
+            mode: image
             tab: 'Main Image'
         main_image_description:
             label: 'Main Image Description'
@@ -40,15 +40,16 @@ secondaryTabs:
             span: right
             type: text
             tab: 'Main Image'
-        published:
-            label: Published
-            span: left
-            type: checkbox
+        excerpt:
+            label: Subtitle
+            size: ''
+            span: auto
+            type: textarea
             tab: Details
         published_at:
             label: 'Published Date'
             mode: date
-            span: left
+            span: right
             cssClass: ''
             trigger:
                 action: enable
@@ -56,19 +57,31 @@ secondaryTabs:
                 condition: checked
             type: datepicker
             tab: Details
-        excerpt:
-            label: Subtitle
-            size: ''
-            span: left
-            type: textarea
+        published:
+            label: Published
+            span: right
+            type: checkbox
             tab: Details
         categories:
             label: Categories
             nameFrom: title
-            span: auto
+            span: left
             mode: relation
             type: taglist
             tab: Details
+        related_posts:
+            label: 'Related Posts'
+            span: auto
+            nameFrom: title
+            descriptionFrom: description
+            type: taglist
+            mode: relation
+            tab: Details
+        layout:
+            label: Layout
+            span: auto
+            type: layout
+            tab: Layout
         meta_title:
             label: 'Meta Title'
             span: left
@@ -115,8 +128,3 @@ secondaryTabs:
                                     size: ''
                                     span: full
                                     type: textarea
-        layout:
-            label: Layout
-            span: auto
-            type: layout
-            tab: Layout

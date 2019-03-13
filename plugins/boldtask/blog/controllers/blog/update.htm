@@ -4,6 +4,7 @@
         <?= Form::open([
             'class' => 'layout',
             'data-change-monitor' => 'true',
+            'data-window-close-confirm' => e(trans('rainlab.blog::lang.post.close_confirm')),
             'id' => 'post-form'
         ]) ?>
             <?= $this->formRender() ?>

@@ -1,0 +1,10 @@
+@tailwind preflight;
+@tailwind components;
+
+* {
+    position: relative;
+}
+
+@import 'components/layout';
+
+@tailwind utilities;
