@@ -1,0 +1,34 @@
+==
+{##}
+<head>
+    <meta charset="utf-8">
+    {% if '{{' in this.page.meta_title %}
+        <title>{{ twig.parse(this.page.meta_title, {this: this})|raw }}</title>
+    {% else %}
+        <title>{{ this.page.meta_title }}</title>
+    {% endif %}
+    {% if '{{' in this.page.meta_description %}
+        <meta name="description" content="{{ twig.parse(this.page.meta_description, {this: this})|raw }}">
+    {% else %}
+        <meta name="description" content="{{ this.page.meta_description }}">
+    {% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="{{ canonical }}">
+    {% partial 'site/meta/icons' %}
+    {% placeholder schema %}
+    {% styles %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    {% if this.theme.google_analytics %}
+      <script async src="https://www.googletagmanager.com/gtag/js?id={{ this.theme.google_analytics }}"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-{{ this.theme.google_analytics }}');
+      </script>
+    {% endif %}
+    {% if this.theme.google_search_console %}
+      {{ this.theme.google_search_console|raw }}
+    {% endif %}
+    {% partial 'site/meta/stylesheets' %}
+</head>

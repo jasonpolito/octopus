@@ -1,0 +1,154 @@
+[viewBag]
+==
+{##}
+{% set mobile_menu = this.theme.use_header ? this.theme.header_items : this.theme.mobile_menu_items %}
+<div class="mobile-menu">
+    <div>
+        <ul class="list-reset text-center flex justify-center flex-col">
+            <li>
+                <a class="inline-block align-top py-4" href="{{ 'home'|page }}">
+                    {% if this.theme.logo %}
+                        <img src="{{ this.theme.logo.path }}" alt="{{ this.theme.site_name }}" style="width: {{ this.theme.logo_width }}" class="align-top">
+                    {% else %}
+                        <span class="flex items-center text-primary">
+                            <span class="text-lg"><b>{{ this.theme.site_name }}</b></span>
+                        </span>
+                    {% endif %}
+                </a>
+            </li>
+
+            {% for item in mobile_menu %}
+                <li>
+                    {% if item.title %}
+                        <a href="{{ item.url }}" data-toggle-menu class="mobile-menu-item block py-4 px-4 text-lg">{{ item.title }}</a>
+                    {% endif %}
+                    {% if item.html %}
+                        {{ twig.parse(item.html, {this: this})|raw }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+            <li><span data-toggle-menu class="block py-4 px-4 text-lg cursor-pointer"><i data-feather="x"></i></span></li>
+        </ul>
+    </div>
+</div>
+
+{% for banner in this.theme.banners if banner.position == 'top' and not banner.fixed and banner.enabled %}
+    <div class="py-4 text-xs banner" style="color: {{ banner.color }}; background: {{ banner.background }}">
+        <div class="container">
+            <div class="flex justify-between items-center">
+                <div>
+                    <div class="text-lg pb-2">{{ twig.parse(banner.title, {'this': this})|raw }}</div>
+                    {{ twig.parse(banner.content, {'this': this})|raw }}
+                </div>
+                {% if banner.dismissable %}
+                    <div class="pl-2">
+                        <button data-dismiss-banner style="color: {{ banner.color }}">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<header>
+{# <header class="sticky pin-t z-10 bg-white border-b border-grey-lighter globalNav"> #}
+  <div class="globalNav">
+      {% for banner in this.theme.banners if banner.position == 'top' and banner.fixed and banner.enabled %}
+        <div class="banner">
+            <div class="py-4 text-xs" style="color: {{ banner.color }}; background-image: linear-gradient(to right, {{ color_lighten(banner.background, 5) }}, {{ color_darken(banner.background, 5) }})">
+                <div class="container">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <div class="text-lg pb-2">{{ twig.parse(banner.title, {'this': this})|raw }}</div>
+                            {{ twig.parse(banner.content, {'this': this})|raw }}
+                        </div>
+                        {% if banner.dismissable %}
+                            <div class="pl-2">
+                                <button data-dismiss-banner style="color: {{ banner.color }}"><i data-feather="x"></i></button>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+      {% endfor %}
+        <div class="container">
+            <div class="flex flex-wrap justify-between items-center">
+                <div class="text-center">
+                    <div class="inline-block align-top">
+                        <a class="py-2 grid-sm items-center text-inherit no-underline" href="{{ 'home'|page }}">
+                            {% if this.theme.logo %}
+                                <img src="{{ this.theme.logo.path }}" alt="{{ this.theme.site_name }}" style="width: {{ this.theme.logo_width }}" class="align-top">
+                            {% else %}
+                                <span class="flex items-center">
+                                    <span class="text-lg"><b>{{ this.theme.site_name }}</b></span>
+                                </span>
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+                <nav class="flex justify-center">
+                    <ul class="list-reset hidden md:flex items-center navRoot">
+                        {% for item in this.theme.header_items %}
+                            {% set dropdown = item.has_dropdown %}
+                            <li class="{{ dropdown ? 'navSection' : ''}}">
+                                {% if item.title %}
+                                    <a class="no-underline hover:opacity-50 anim text-inherit block p-6 text-sm {{ dropdown ? 'rootLink hasDropdown' : ''}}" {% if dropdown %}data-dropdown="{{ item.url|replace({'/': ''}) }}"{% endif %} href="{{ item.url }}">{{ item.title }}</a>
+                                {% endif %}
+                                {% if item.html %}
+                                    {{ twig.parse(item.html, {this: this})|raw }}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                <div class="flex items-center">
+                    <div class="hidden md:block">
+                        <span class="block py-4 px-4 -mr-4 cursor-pointer"><i data-feather="facebook"></i></span>
+                    </div>
+                    <div class="md:hidden">
+                        <span data-toggle-menu class="block py-4 px-4 -mr-4 cursor-pointer"><i data-feather="menu"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dropdownRoot">
+            <div class="dropdownBackground">
+                <div class="alternateBackground"></div>
+            </div>
+            <div class="dropdownArrow"></div>
+            <div class="dropdownContainer" style="width: 1000px">
+                {% set total = 0 %}
+                {% for item in this.theme.header_items if item.has_dropdown %}
+                    {% set total = total + 1 %}
+                {% endfor %}
+                {% set i = 1 %}
+                {% for item in this.theme.header_items if item.has_dropdown %}
+                    <div class="dropdownSection" data-dropdown="{{ item.url|replace({'/': ''}) }}">
+                        <div class="dropdownContent text-black">
+                            <div>
+                                {% if item.dropdown_content_type == 'partial' %}
+                                    {% partial 'menu/partials/' ~ item.dropdown_content %}
+                                {% else %}
+                                    {{ twig.parse(item.dropdown_content, {'this': this})|raw }}
+                                {% endif %}
+                            </div>
+                            {% if item.has_dropdown_extras %}
+                                <div>
+                                    {% if item.dropdown_content_type == 'partial' %}
+                                        {% partial 'menu/partials/' ~ item.dropdown_extras %}
+                                    {% else %}
+                                        {{ twig.parse(item.dropdown_extras, {'this': this})|raw }}
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% set i = i + 1 %}
+                {% endfor %}
+            </div>
+        </div>
+  </div>
+</header>

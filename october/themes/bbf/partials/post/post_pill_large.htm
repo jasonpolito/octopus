@@ -1,0 +1,22 @@
+<div class="post-pill flex flex-row-reverse">
+    <div class="pl-8">
+        <a href="{{ 'slug'|page({slug: post.slug}) }}" class="post-pill--image block" style="width: 156px; height: 156px; background: radial-gradient({{ post.main_image_color }}, {{ color_darken(post.main_image_color, 20) }})">
+            {% set focus = post.main_image_focus|split(' ') %}
+            <img class="align-top lazyload lazy" data-src="{{post.main_image|media|resize(200)}}" alt="{{ post.main_image_alt ? post.main_image_alt : post.main_image_description}}" data-focus-left="{{ focus[0] }}" data-focus-top="{{ focus[1] }}" data-focus-right="{{ focus[2] }}" data-focus-bottom="{{ focus[3] }}">
+        </a>
+    </div>
+    <div class="flex-1">
+        <div class="flex flex-col justify-between h-full">
+            <div>
+                <h4 class="post-pill--title text-lg pt-0 my-0" style="line-height: 1.3">
+                    <a href="{{ 'slug'|page({slug: post.slug}) }}">{{ post.title|raw }}</a>
+                </h4>
+                <div class="post-card--subtitle">{{ post.excerpt|md|raw }}</div>
+            </div>
+            <div class="post-pill--info text-grey-darker pt-2 pb-8 text-xs">{{ post.displayDate|date('M jS, Y') }}
+                •
+                {{ post.read_time }}
+                min read</div>
+        </div>
+    </div>
+</div>

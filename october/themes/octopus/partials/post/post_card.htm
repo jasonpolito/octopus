@@ -1,0 +1,18 @@
+<div class="post-card pb-8 mb-8">
+    <a href="{{ 'slug'|page({slug: post.slug}) }}" class="post-card--image" style=" background: radial-gradient({{ post.main_image_color }}, {{ color_darken(post.main_image_color, 20) }})">
+        {% set focus = post.main_image_focus|split(' ') %}
+        <div style="height: 150px;">
+            <img class="align-top lazyload lazy" src="{{post.main_image|media|resize(50)}}" data-src="{{post.main_image|media|resize(500)}}" alt="{{ post.main_image_alt ? post.main_image_alt : post.main_image_description}}" data-focus-left="{{ focus[0] }}" data-focus-top="{{ focus[1] }}" data-focus-right="{{ focus[2] }}" data-focus-bottom="{{ focus[3] }}">
+        </div>
+    </a>
+    <div class="w-full">
+        <h4 class="post-card--title">
+            <a href="{{ 'slug'|page({slug: post.slug}) }}">{{ post.title|raw }}</a>
+        </h4>
+        <div class="post-card--subtitle text-xs">{{ post.excerpt|md|raw }}</div>
+        <div class="post-card--info">{{ post.displayDate|date('M jS, Y') }}
+            •
+            {{ post.read_time }}
+            min read</div>
+    </div>
+</div>

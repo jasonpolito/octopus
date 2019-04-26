@@ -1,0 +1,66 @@
+item:
+    name: Link
+    description: Basic text and URL
+    titleFrom: title
+    icon: icon-link
+    fields:
+        title:
+            label: Text
+            placeholder: "Link Text"
+            span: left
+            type: text
+        url:
+            label: URL
+            placeholder: "/url"
+            span: auto
+            type: text
+        has_dropdown:
+            label: "Has Dropdown"
+            span: auto
+            type: checkbox
+        has_dropdown_extras:
+            trigger:
+                action: show
+                field: has_dropdown
+                condition: "checked"
+            label: "Dropdown Extras"
+            span: auto
+            type: checkbox
+        dropdown_content_type:
+            type: dropdown
+            options:
+                partial: Partial
+                html: HTML
+        dropdown_content:
+            trigger:
+                action: show
+                field: dropdown_content_type
+                condition: value[partial]
+            label: "Dropdown Content"
+            type: dropdown
+            options: listPartials
+            # span: full
+            # titleFrom: title
+            # type: codeeditor
+        dropdown_extras:
+            trigger:
+                action: show
+                field: has_dropdown_extras
+                condition: "checked"
+            label: "Dropdown Content"
+            type: dropdown
+            options: listPartials
+            # span: full
+            # titleFrom: title
+            # type: codeeditor
+            # prompt: "Add Item"
+            # groups: $/boldtask/blog/config/menu_fields.yaml
+
+html:
+    name: HTML
+    description: Custom HTML code
+    icon: icon-code
+    fields:
+        html:
+            label: HTML Content
+            type: codeeditor

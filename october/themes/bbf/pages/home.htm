@@ -1,0 +1,103 @@
+title = "Home"
+url = "/"
+layout = "default"
+meta_title = "Business Brokers of Florida"
+meta_description = ""
+is_hidden = 0
+==
+
+{% set cats = [
+'Seller Financed Businesses',
+'Gas Stations',
+'Websites and Ecommerce',
+'Car Washes',
+'Home Based Business',
+'Storage and Warehousing',
+'Restaurants',
+'Routes',
+'Franchise Opportunities',
+'Hotels',
+'Pharmacies',
+'Laundromats',
+] %}
+
+<div data-header-classes="border-b border-grey-lighter z-10 w-full "></div>
+
+<section class="bg-cover bg-center" style="background-image: url({{ 'assets/public/img/bg.jpg'|theme }})">
+    <div class="container text-center">
+        <div class="shadow-lg rounded">
+            <div class="rounded shadow-lg">
+                <div class="p-8 rounded-t bg-white">
+                    <h1 class="font-normal text-3xl my-0">Find Florida Businesses For Sale</h1>
+                    <div class="grid justify-center pt-4 pb-6">
+                        <div class="font-bold text-primary"><span style="box-shadow: 0 2px" class="pb-1">Businesses For Sale</span></div>
+                        <div class="">Buyer Opportunities</div>
+                        <div class="">Find Brokers</div>
+                    </div>
+                    <div class="grid grid-sm">
+                        <div class="flex-1">
+                            <div class="grid grid-sm">
+                                <div class="w-1/2">
+                                    <div>
+                                        <select name="" id="" class="block w-full py-2 px-4 border border-grey-light bg-grey-lightest rounded appearance-none">
+                                            <option value="">All Business Categories</option>
+                                        </select>
+                                        <div class="absolute pin-r pin-t p-2">
+                                            <i data-feather="chevron-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-1/4">
+                                    <div>
+                                        <select name="" id="" class="block w-full py-2 px-4 border border-grey-light bg-grey-lightest rounded appearance-none">
+                                            <option value="">All Counties</option>
+                                        </select>
+                                        <div class="absolute pin-r pin-t p-2">
+                                            <i data-feather="chevron-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-1/4">
+                                    <div class="grid grid-sm">
+                                        <div class="w-1/2">
+                                            <div>
+                                                <select name="" id="" class="block w-full py-2 px-4 border border-grey-light bg-grey-lightest rounded appearance-none">
+                                                    <option value="">Min</option>
+                                                </select>
+                                                <div class="absolute pin-r pin-t p-2">
+                                                    <i data-feather="chevron-down"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w-1/2">
+                                            <div>
+                                                <select name="" id="" class="block w-full py-2 px-4 border border-grey-light bg-grey-lightest rounded appearance-none">
+                                                    <option value="">Max</option>
+                                                </select>
+                                                <div class="absolute pin-r pin-t p-2">
+                                                    <i data-feather="chevron-down"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="bg-primary p-2 px-3 rounded text-white shadow-lg"><span class="inline-block align-middle -my-1" style="width: 16px"><i data-feather="search"></i></span></div>
+                        </div>
+                    </div>
+                    <div class="text-right text-grey text-xs pt-4"><i>Advanced Search</i></div>
+                </div>
+                <div class="p-8 bg-grey-lightest rounded-b text-sm text-left">
+                    <h3 class="font-normal my-0 pt-0 pb-2 text-lg">Top Business Categories in Florida <span class="text-xs opacity-50"><i class="text-primary">All Categories</i></span></h3>
+                    <div class="grid text-xs">
+                    {% for cat in cats %}
+                        <div class="w-1/4 py-1 text-primary">{{ cat }}</div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

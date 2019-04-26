@@ -1,0 +1,244 @@
+tabs:
+    fields:
+        site_name:
+            tab: Overview
+            label: "Site Name"
+            placeholder: "Site Name"
+            span: auto
+            type: text
+        phone_number:
+            tab: Overview
+            placeholder: "(555) 555-5555"
+            label: "Phone Number"
+            span: auto
+            type: text
+        logo:
+            tab: Overview
+            label: Logo
+            span: auto
+            type: fileupload
+            mode: image
+        logo_width:
+            tab: Overview
+            placeholder: "200px"
+            label: "Logo Width"
+            span: auto
+            type: text
+        google_analytics:
+            tab: Tracking & Analytics
+            label: "Google Analytics UA Code"
+            placeholder: "UA-104752468-2"
+            span: auto
+            type: text
+        google_search_console:
+            tab: Tracking & Analytics
+            label: "Google Search Console Meta Tag"
+            placeholder: '<meta name="google-site-verification" content="nIeV--5si2B4QBlEM0XQTGcF_T_b0rdia2teT3-ZSXY" />'
+            span: auto
+            type: text
+        header_items:
+            tab: "Header"
+            label: "Menu Items"
+            type: repeater
+            span: left
+            prompt: Add Menu Item
+            groups: $/boldtask/blog/config/menu_fields.yaml
+        use_header:
+            tab: "Header"
+            label: "Use header items for mobile menu"
+            span: right
+            default: 1
+            type: checkbox
+        mobile_menu_links:
+            trigger:
+                action: show
+                field: use_header
+                condition: "unchecked"
+            tab: "Header"
+            label: "Mobile Menu Items"
+            type: repeater
+            span: left
+            prompt: Add Menu Item
+            groups: $/boldtask/blog/config/menu_fields.yaml
+        footer_columns:
+            tab: "Footer"
+            label: "Footer Columns"
+            span: auto
+            type: repeater
+            prompt: "Add Column"
+            form:
+                fields:
+                    title:
+                        label: Title
+                        placeholder: "Column Title"
+                        span: full
+                        type: text
+                    type:
+                        label: Type
+                        options:
+                            links: Links
+                            html: HTML
+                        span: left
+                        type: dropdown
+                    html:
+                        trigger:
+                            action: show
+                            field: type
+                            condition: "value[html]"
+                        type: codeeditor
+                    items:
+                        label: "Column Content"
+                        trigger:
+                            action: show
+                            field: type
+                            condition: "value[links]"
+                        span: full
+                        type: repeater
+                        span: left
+                        prompt: Add Item
+                        groups: $/boldtask/blog/config/menu_fields.yaml
+        footer_copyright:
+            tab: "Footer"
+            label: "Footer Copyright"
+            placeholder: "&copy; {{ 'now'|date('Y') }}"
+            span: auto
+            type: codeeditor
+        contact_form_inputs:
+            tab: "Contact Form"
+            label: "Contact Form Inputs"
+            span: auto
+            type: repeater
+            prompt: "Add Input"
+            form:
+                fields:
+                    type:
+                        label: Type
+                        options:
+                            text: Text
+                            email: Email
+                            textarea: "Text Area"
+                        span: left
+                        type: dropdown
+                    width:
+                        label: Width
+                        options:
+                            full: Full
+                            "3/4": "3/4"
+                            "2/3": "2/3"
+                            "1/2": "1/2"
+                            "1/3": "1/3"
+                            "1/4": "1/4"
+                        span: auto
+                        type: dropdown
+                    label:
+                        label: Label
+                        placeholder: "John Doe"
+                        span: left
+                        type: text
+                    name:
+                        label: Name
+                        placeholder: "name"
+                        span: auto
+                        type: text
+                    validate:
+                        type: checkbox
+                        label: Validate
+                    rules:
+                        trigger:
+                            action: show
+                            field: validate
+                            condition: "checked"
+                        label: Validation
+                        options:
+                            required: required
+                            email: email
+                        span: full
+                        mode: array
+                        type: taglist
+        contact_form_recipients:
+            tab: "Contact Form"
+            label: "Contact Form Recipients"
+            span: auto
+            type: repeater
+            prompt: "Add Recipient"
+            form:
+                fields:
+                    email:
+                        label: Email
+                        placeholder: "example@domain.tld"
+                        type: text
+        font_size:
+            tab: Style & Colors
+            label: "Font Size"
+            span: auto
+            placeholder: "16px"
+            type: text
+            assetVar: "font-size"
+        font_family:
+            tab: Style & Colors
+            label: "Font Family"
+            placeholder: "Open Sans"
+            span: auto
+            type: text
+            assetVar: "font-family"
+        color_primary:
+            tab: Style & Colors
+            label: Primary Color
+            type: colorpicker
+            assetVar: "color-primary"
+        color_accent:
+            tab: Style & Colors
+            label: Accent Color
+            type: colorpicker
+            assetVar: "color-accent"
+        banners:
+            tab: Banners
+            label: Banners
+            type: repeater
+            prompt: "Add Banner"
+            form:
+                fields:
+                    title:
+                        label: Title
+                        placeholder: "Check Out our new promotion!"
+                        span: left
+                        type: text
+                    position:
+                        span: left
+                        label: Position
+                        default: top
+                        options:
+                            top: Top
+                            bottom: Bottom
+                        type: dropdown
+                    enabled:
+                        span: left
+                        label: Enabled
+                        default: 1
+                        type: switch
+                    fixed:
+                        span: left
+                        label: Always Visible
+                        default: 1
+                        type: switch
+                    dismissable:
+                        span: left
+                        label: Dismissable
+                        default: 1
+                        type: switch
+                    content:
+                        label: Content
+                        type: codeeditor
+                    color:
+                        label: Text Color
+                        type: colorpicker
+                    background:
+                        label: Background Color
+                        type: colorpicker
+        privacy_policy:
+            tab: Misc
+            label: Privacy Policy
+            type: markdown
+            mode: split
+            size: huge
+            span: full

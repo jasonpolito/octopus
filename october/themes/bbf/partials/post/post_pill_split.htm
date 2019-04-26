@@ -1,0 +1,32 @@
+<div class="post-pill flex flex-wrap flex-row-reverse py-8 border-t border-b mb-8 border-grey-lighter">
+    <div class="w-full md:w-1/2 md:pl-4">
+        <div class="text-primary uppercase text-sm pb-4 text-primary md:hidden">
+            <a href="{{ 'slug'|page({slug: post.slug }) }}">
+                <b>Read Next</b>
+            </a>
+        </div>
+        <a href="{{ 'slug'|page({slug: post.slug}) }}" class="post-pill--image block" style="height: 320px; background: radial-gradient({{ post.main_image_color }}, {{ color_darken(post.main_image_color, 20) }})">
+            {% set focus = post.main_image_focus|split(' ') %}
+            <img class="align-top lazyload lazy" data-src="{{post.main_image|media|resize(800)}}" alt="{{ post.main_image_alt ? post.main_image_alt : post.main_image_description}}" data-focus-left="{{ focus[0] }}" data-focus-top="{{ focus[1] }}" data-focus-right="{{ focus[2] }}" data-focus-bottom="{{ focus[3] }}">
+        </a>
+    </div>
+    <div class="w-full md:w-1/2 md:pr-4">
+        <div class=" flex flex-col justify-between h-full">
+            <div class="text-primary uppercase text-sm text-primary hidden md:block">
+                <a href="{{ 'slug'|page({slug: post.slug }) }}">
+                    <b>Read Next</b>
+                </a>
+            </div>
+            <div class="pt-6 md:pt-0">
+                <h4 class="post-pill--title sm:text-2xl lg:text-3xl pt-0 my-0" style="line-height: 1.3">
+                    <a href="{{ 'slug'|page({slug: post.slug}) }}">{{ post.title|raw }}</a>
+                </h4>
+                <div class="post-card--subtitle">{{ post.excerpt|md|raw }}</div>
+            </div>
+            <div class="post-pill--info text-grey-darkest pt-4 pb-8 text-xs">{{ post.displayDate|date('M jS, Y') }}
+                •
+                {{ post.read_time }}
+                min read</div>
+        </div>
+    </div>
+</div>

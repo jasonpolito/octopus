@@ -1,0 +1,41 @@
+{
+  "name": "jp-build-process",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.mix.js",
+  "scripts": {
+    "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jason Polito",
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.5.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "favicons-webpack-plugin": "^0.0.9",
+    "glob-all": "^3.1.0",
+    "imagemin-mozjpeg": "^7.0.0",
+    "imagemin-webpack-plugin": "^2.1.5",
+    "laravel-mix": "^4.0.15",
+    "laravel-mix-purgecss": "^2.1.0",
+    "purgecss-webpack-plugin": "^0.22.0",
+    "sass": "^1.18.0",
+    "sass-loader": "7.*",
+    "tailwindcss": "^0.5.3",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {
+    "barba.js": "^1.0.0",
+    "feather-icons": "^4.17.0",
+    "lax.js": "^1.2.3",
+    "lazysizes": "^4.1.7",
+    "pace-js-amd-fix": "^1.0.5",
+    "smooth-scroll": "^15.0.0",
+    "tinycolor2": "^1.4.1",
+    "webfontloader": "^1.6.28"
+  }
+}

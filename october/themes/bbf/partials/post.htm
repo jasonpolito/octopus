@@ -1,0 +1,28 @@
+<div data-active-links="/blog"></div>
+
+{% put body %}
+{% partial ('post/layouts/post_' ~ record.layout) record=record %}
+{% endput %}
+
+<article class="blog-post">
+    {% placeholder body %}
+    <div class="pb-16 post-content">
+        {% partial 'post/layouts/partials/post_open' %}
+        {{ record.parsedContent|raw }}
+        {% partial 'post/layouts/partials/post_close' %}
+    </div>
+</article>
+
+<section>
+    <div class="container-full">
+        {% partial 'post/post_pill_split' post=record.nextPost(record) %}
+        <div class="grid justify-center">
+            {% for post in record.relatedPosts() %}
+                <div class="w-full md:w-1/3">{% partial 'post/post_card' post=post %}</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+{% put schema %}{% partial 'post/partials/post_schema' record=record %}{% endput %}

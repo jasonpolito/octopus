@@ -1,0 +1,19 @@
+<div class="p-8 pb-4" style="width: 380px">
+    <h4 class="text-sm tracking-huge uppercase my-0 py-0">Latest</h4>
+    <div class="text-xs text-primary">
+        <ul class="list-reset">
+            {% for post in posts|slice(0, 3) %}
+                {% if not loop.first %}
+                    <li class="my-2 border-b border-grey-lighter"></li>
+                {% endif %}
+                <li class="py-1">
+                    {% partial 'post/post_pill' post=post %}
+                </li>
+            {% endfor %}
+            <li class="my-2 border-b border-grey-lighter"></li>
+        </ul>
+    </div>
+    <div class="text-right text-primary text-xs">
+        <a href="{{ 'blog'|page }}">More</a>
+    </div>
+</div>

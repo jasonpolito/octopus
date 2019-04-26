@@ -1,0 +1,20 @@
+{
+    "name": "boldtask/colors",
+    "type": "october-plugin",
+    "description": "Get main colors from an image.",
+    "homepage": "https://jasonpolito.com",
+    "keywords": [
+        "october",
+        "cms"
+    ],
+    "authors": [
+        {
+            "name": "Jason Polito",
+            "email": "jason@boldtask.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "ksubileau/color-thief-php": ">=1.4.1"
+    }
+}

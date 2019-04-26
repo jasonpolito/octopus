@@ -1,0 +1,11 @@
+plugin:
+    name: "Theme Options"
+    description: ""
+    author: Boldtask
+    icon: icon-cogs
+    homepage: ""
+navigation:
+    theme:
+        label: Theme Options
+        url: cms/themeoptions/update/octopus
+        icon: icon-cogs

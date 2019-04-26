@@ -1,0 +1,60 @@
+{##}
+{% for banner in this.theme.banners if banner.position == 'bottom' and banner.enabled %}
+    <div class="banner fixed w-full pin-b" style="z-index: 2">
+        <div class="py-4 text-xs" style="color: {{ banner.color }}; background-image: linear-gradient(to right, {{ color_lighten(banner.background, 5) }}, {{ color_darken(banner.background, 5) }})">
+            <div class="container">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="text-lg pb-2">{{ twig.parse(banner.title, {'this': this})|raw }}</div>
+                        {{ twig.parse(banner.content, {'this': this})|raw }}
+                    </div>
+                    {% if banner.dismissable %}
+                        <div class="pl-2">
+                            <button data-dismiss-banner style="color: {{ banner.color }}">
+                                <i data-feather="x"></i>
+                            </button>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{# <footer class="bg-grey-darkest text-white border-t border-grey-lighter"> #}
+<footer class="bg-black text-white">
+    <section>
+        <div class="container">
+            {% if this.theme.footer_columns %}
+                <div class="grid-lg justify-center">
+                    {% for column in this.theme.footer_columns %}
+                        <div class="py-4 sm:w-auto">
+                            <h4 class="text-sm uppercase my-0 pt-0 tracking-huge text-grey-darker">{{ column.title }}</h4>
+                            {% if column.type == 'links' %}
+                                <ul class="list-reset text-sm md:text-xs">
+                                    {% for item in column.items %}
+                                        <li class="py-1">
+                                            {% if item.title %}
+                                                <div class="text-grey">
+                                                    <span class="hover:text-white">
+                                                        <a href="{{ item.url }}" {% if item.blank %} target="_blank" {% endif %}>{{ item.title }}</a>
+                                                    </span>
+                                                </div>
+                                            {% endif %}
+                                            {% if item.html %}
+                                                {{ twig.parse(item.html, {this: this})|raw }}
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            {% if column.type == 'html' %}
+                                {{ twig.parse(column.html, {this: this})|raw }}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {{ twig.parse(this.theme.footer_copyright, {'this': this})|raw }}
+        </div>
+    </section>
+</footer>

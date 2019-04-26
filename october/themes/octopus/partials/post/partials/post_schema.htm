@@ -1,0 +1,23 @@
+<meta property="og:title" content="{{ record.title }}">
+<meta property="og:description" content="{{ record.excerpt }}">
+<meta property="og:site_name" content="{{ this.theme.site_name }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ record.main_image|media }}">
+
+{% for schema in record.schema %}
+    {% if schema.type in 'FAQPage' %}
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org/",
+            "@type": "FAQPage",
+            "hasPart": [
+                {% for qa in schema.faqs %}
+                    {"@context": "http://schema.org/","@type": "Question","text": "{{ qa.question }}","acceptedAnswer": {"@type": "Answer","text": "{{ qa.answer }}"}}{% if not loop.last %},{% endif %}
+                {% endfor %}
+            ]
+        }
+        </script>
+    {% endif %}
+{% endfor %}

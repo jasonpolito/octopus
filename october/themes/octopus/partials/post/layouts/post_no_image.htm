@@ -1,0 +1,10 @@
+{% partial 'post/layouts/partials/post_open' %}
+    <h1 {% if record.title|split(' ')|length >= 8 %}class="long-title"{% endif %}>
+        <span>{{ record.title }}</span>
+    </h1>
+    <div class="text-grey-dark -mt-2 mb-6 text-lg">{{ record.excerpt|md|raw }}</div>
+    {% partial 'post/partials/post_details' %}
+    <div class="py-4">
+        <div class="border-b pt-8 border-grey-lighter"></div>
+    </div>
+{% partial 'post/layouts/partials/post_close' %}

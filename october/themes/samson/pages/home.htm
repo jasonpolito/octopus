@@ -1,0 +1,120 @@
+title = "Home"
+url = "/"
+layout = "default"
+meta_title = "Samson Aesthetics"
+meta_description = ""
+is_hidden = 0
+==
+
+{% set services = {
+    Face: {
+        img: 'face',
+        services: [
+        'Facelift',
+        'Eyelid Surgery',
+        'Brow Lift',
+        'Rhinoplasty',
+        ]
+    },
+    Body: {
+        img: 'body', 
+        services: [
+            'Liposuction',
+            'Mommy Makeover',
+            'Tummy Tuck',
+            'Thigh Lift',
+        ]
+    },
+    Breast: {
+        img: 'breast', 
+        services: [
+            'Breast Augmentation',
+            'Breast Lift',
+            'Breast Reduction',
+            'Breast Reconstruction',
+        ]
+    },
+    'Botox Bar': {
+        img: 'botox', 
+        services: [
+            'Botox',
+            'Juvederm',
+            'Lip Filler',
+            'Tear Trough Filler',
+        ]
+    },
+} %}
+
+<div data-header-classes="absolute pin-t w-full z-10 w-full "></div>
+
+<style>
+.font-sans {
+    font-family: 'Noto Sans', sans-serif;
+}
+.bfly {
+    width: 800px;
+}
+</style>
+
+<div class="py-20" style="background: linear-gradient(to bottom, #e2ffff, white)">
+    <div class="fill-parent">
+    {# <div class="fill-parent flex flex-col justify-end"> #}
+        {# <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 220 49.43"><defs><linearGradient id="linear-gradient" x1="1280" y1="340" x2="1280" y2="390.57" gradientTransform="translate(2560 722.29) rotate(180) scale(1 0.98)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e8eeee"/></linearGradient></defs><title>logo</title><path d="M1390,340.57v39.09c-67.19,35.49-133.85-34.65-220,0V340.57h220Z" transform="translate(-1170 -340.57)" fill="url(#linear-gradient)"/></svg> #}
+        {# <svg class="w-full"  data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 220 50.57"><defs><linearGradient id="linear-gradient" x1="1290" y1="269.43" x2="1290" y2="320" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e8eeee"/><stop offset="2" stop-color="#fff"/></linearGradient></defs><title>logo</title><path d="M1180,320V280c67.19-36.31,133.85,35.46,220,0v40H1180Z" transform="translate(-1180 -269.43)" fill="url(#linear-gradient)"/></svg> #}
+    </div>
+    <section>
+        <div class="container text-center">
+            <div>
+                <div class="fill-parent flex items-center justify-center" style="opacity: .1">
+                    <div class="bfly pt-16 px-2">{% partial 'logo' %}</div>
+                    <div class="bfly pt-16 px-2"><div style="transform: scaleX(-1)">
+                        {% partial 'logo' %}
+                    </div></div>
+                </div>
+                <div class="fill-parent flex justify-center items-center">
+                    <div class="rounded-full" style="opacity: .85; width: 600px; height: 600px; background-image: radial-gradient(white, transparent 75%, transparent)"></div>
+                </div>
+                <div class="pb-4 uppercase tracking-huge text-sm font-sans">Samson Aesthetics</div>
+                <h1 class="font-thin mt-0 py-0">Award Winning Plastic Surgery</h1>
+                <div class="pb-4 uppercase tracking-huge text-xs font-sans">
+                    Port Orange <span class="opacity-50 px-2">|</span> Daytona Beach <span class="opacity-50 px-2">|</span> Ormond Beach <span class="opacity-50 px-2">|</span> New Smyrna Beach
+                </div>
+                {# <div class="flex justify-center items-center pt-8 pb-4">
+                    <div>
+                        <img src="{{ 'assets/public/img/dr.jpg'|theme }}" style="width: 70px" alt="" class="shadow-lg align-top rounded-full">
+                    </div>
+                    <div class="pl-4 text-left">
+                        <div class="font-bold text-primary-darker">
+                            Dr. Michel C. Samson
+                        </div>
+                        <div class="text-xs font-sans pt-2 opacity-75">Board Certified Plastic Surgeon</div>
+                        <div class="text-xs font-sans pt-2 opacity-75 underline">Learn More</div>
+                    </div>
+                </div> #}
+            </div>
+            <div class="grid pt-16">
+                {% for title, details in services %}
+                <div class="w-1/4">
+                    <div class="rounded shadow-lg">
+                        <div class="py-16 rounded-t bg-cover bg-center border-t border-primary-dark" style="background-image: url({{ ('assets/public/img/' ~ details.img ~ '.jpg')|theme }})"></div>
+                        <div class="p-8 rounded-b bg-white">
+                            <div class="mb-4 text-primary-darker">
+                                <b>{{ title }}</b>
+                            </div>
+                            <ul class="list-reset font-sans text-xs">
+                                {% for item in details.services %}
+                                    <li class="py-2 {{ loop.first ? '' : 'border-t border-grey-lighter'}}">{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</div>
+
+<section>
+    <div class="container"></div>
+</section>

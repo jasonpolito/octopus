@@ -1,0 +1,15 @@
+{##}
+<div class="text-sm text-{{ color ? color : 'grey-dark' }}">
+    {% if record.categories|length %}
+        <span class="lg:hidden">
+            <span class="text-{{ color ? color : 'primary' }}">
+                <a href="{{ 'blog'|page({c: record.categories[0].slug}) }}">{{ record.categories[0].title }}</a>
+            </span>
+            •
+        </span>
+    {% endif %}
+    {{ record.displayDate|date('F jS') }}
+    •
+    {{ record.read_time }}
+    min read
+</div>

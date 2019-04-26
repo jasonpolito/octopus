@@ -1,0 +1,53 @@
+title = "Home"
+url = "/"
+layout = "default"
+meta_title = "Octopus Theme"
+meta_description = ""
+is_hidden = 0
+==
+
+<div data-header-classes="z-10 text-white absolute pin-t w-full "></div>
+
+<section class="bg-cover bg-center text-white h-screen" style="background-image: url({{ 'assets/public/img/red_octopus.jpg'|theme }})">
+    <div class="fill-parent opacity-80" style="background-image: linear-gradient(to bottom, {{ color_darken(this.theme.color_accent, 30)}}, {{ this.theme.color_accent }})"></div>
+    <div class="container py-20">
+        {# <h1>Welcome to the Octopus starter theme! {{ ip }}</h1> #}
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h3>Automatic tints and shades!</h3>
+        <div class="flex">
+            <div><div class="bg-grey-darkest p-6"></div></div>
+            <div><div class="bg-grey-darker p-6"></div></div>
+            <div><div class="bg-grey-dark p-6"></div></div>
+            <div><div class="bg-grey p-6"></div></div>
+            <div><div class="bg-grey-light p-6"></div></div>
+            <div><div class="bg-grey-lighter p-6"></div></div>
+            <div><div class="bg-grey-lightest p-6"></div></div>
+        </div>
+        <div class="flex">
+            <div><div class="bg-primary-darkest p-6"></div></div>
+            <div><div class="bg-primary-darker p-6"></div></div>
+            <div><div class="bg-primary-dark p-6"></div></div>
+            <div><div class="bg-primary p-6"></div></div>
+            <div><div class="bg-primary-light p-6"></div></div>
+            <div><div class="bg-primary-lighter p-6"></div></div>
+            <div><div class="bg-primary-lightest p-6"></div></div>
+        </div>
+        <div class="flex">
+            <div><div class="bg-accent-darkest p-6"></div></div>
+            <div><div class="bg-accent-darker p-6"></div></div>
+            <div><div class="bg-accent-dark p-6"></div></div>
+            <div><div class="bg-accent p-6"></div></div>
+            <div><div class="bg-accent-light p-6"></div></div>
+            <div><div class="bg-accent-lighter p-6"></div></div>
+            <div><div class="bg-accent-lightest p-6"></div></div>
+        </div>
+        <div class="grid">
+            <div><a href="#" class="btn">Button</a></div>
+            <div><a href="#" class="btn outline">Button</a></div>
+        </div>
+    </div>
+</section>

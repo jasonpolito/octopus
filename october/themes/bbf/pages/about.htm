@@ -1,0 +1,21 @@
+title = "About"
+url = "/about"
+layout = "default"
+meta_title = "About"
+meta_description = ""
+is_hidden = 0
+==
+
+<style>
+.text-green {
+  color: #0b4800
+}
+</style>
+<div data-header-classes="z-10 text-green absolute pin-t w-full "></div>
+
+<section class="bg-cover bg-center text-white h-screen" style="background-image: url({{ 'assets/public/img/red_octopus.jpg'|theme }})">
+    <div class="fill-parent opacity-90 bg-white" style="background-image: linear-gradient(to bottom, #a3f594, {{ color_darken('#a3f594', 30)}});"></div>
+    <div class="container py-20">
+        {# <h1>Welcome to the Octopus starter theme! {{ ip }}</h1> #}
+    </div>
+</section>
